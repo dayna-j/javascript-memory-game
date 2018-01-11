@@ -24,7 +24,6 @@ body{
   border:1px solid aliceblue;
   background-color: darkslategrey;
   transition: background-color .6s ease-out;
-/*    transition: transform rotate(30deg) 2s; */
 }
 
 .board-square:hover{
