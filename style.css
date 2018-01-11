@@ -1,0 +1,44 @@
+body{
+/*   display: flex; */
+/*   align-items: center; */
+/*   background-color: lightyellow; */
+  background-color: azure;
+/*   background: linear-gradient(to left, olive, beige); */
+}
+
+.container{
+  position: relative;
+  top: 150px;
+  width: 50%;
+  height: 50%;
+  
+}
+
+.row{
+/*   width: 50%; */
+  height: 60px;
+/*   border: 1px solid black; */
+}
+
+.board-square{
+  border:1px solid aliceblue;
+  background-color: darkslategrey;
+  transition: background-color .6s ease-out;
+/*    transition: transform rotate(30deg) 2s; */
+}
+
+.board-square:hover{
+  background-color: aliceblue;
+  background-color: azure;
+}
+
+/* .no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+} */
