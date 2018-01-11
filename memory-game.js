@@ -1,22 +1,42 @@
 $(document).ready(function()
 {
-	var gameObject = {
+	var gameObject = 
+	{
 		// Properties of the game object.
 		_isGameOver: false,
 		_numTurns: 0,
+
+		resetGame: function()
+		{
+			return null;
+		},
 		
-		gameBoard: {
+		gameBoard: 
+		{
 			tiles: $(".board-square"),
-//			rows: gameObject.gameBoard.tiles,
-			randomNumber: function(){
-				return Math.floor((Math.random() * 24) + 1);
+			randomNumber: function()
+			{
+				return Math.floor((Math.random() * 12) + 1);
 			}
 		}
-	
 	};
-	
+
+//	alert(gameObject.gameBoard.randomNumber());
 	console.log(gameObject.gameBoard.tiles[0]);
-//	console.log(gameObject.gameBoard.rows);
-//	gameObject.gameBoard.tiles;
+	console.log(gameObject.resetGame());
+	
+	$(".board-square").on("click", function(event)
+	{
+		console.log(event.target.id);
+		
+		
+	});
+	
+	
+	
+	
+	
+	
+	
 	
 });
