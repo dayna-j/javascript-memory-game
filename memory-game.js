@@ -19,6 +19,7 @@ $(document).ready(function()
 			gameObject.gameBoard.numSolved = 0;
 			gameObject.gameBoard.firstSelected = '';
 			gameObject.gameBoard.secondSelected = '';
+			$(".display").val(0);
 			
 			$(".board-square").each(function()
 			{
@@ -99,8 +100,8 @@ $(document).ready(function()
 				
 //				var selectedTiles = $(".selected");
 				
-				if(gameObject.gameBoard.firstSelected === '')
-				{
+				if(gameObject.gameBoard.firstSelected == '')
+				{// 
 					gameObject.gameBoard.firstSelected = event.target.innerHTML;
 				}
 				else
@@ -119,14 +120,15 @@ $(document).ready(function()
 					{
 						$(this).removeClass(".selected");
 						$(this).addClass("solved");
+						
 						gameObject.gameBoard.numSelected = 0;
-						gameObject.gameBoard.numSolved = gameObject.gameBoard.numSolved + 2;
+						gameObject.gameBoard.numSolved = gameObject.gameBoard.numSolved + 1;
+						$("#matchedDisplay").val(gameObject.gameBoard.numSolved)
+						
 						gameObject.gameBoard.firstSelected = '';
 						gameObject.gameBoard.secondSelected = '';
 					})
 					
-					
-							
 				}
 				
 				
@@ -151,11 +153,11 @@ $(document).ready(function()
 	{
 		
 		if($(this).hasClass('solved'))
-		{
+		{// is the tile has been solved, do nothing...
 			return null;
 		}
 		
-		gameObject.gameBoard.compareTiles(event);
+//		gameObject.gameBoard.compareTiles(event);
 		
 		if ($(this).hasClass("selected"))
 		{// if its there already, remove it
@@ -163,7 +165,8 @@ $(document).ready(function()
 			gameObject.gameBoard.numSelected = gameObject.gameBoard.numSelected - 1;
 		}
 		else if(gameObject.gameBoard.numSelected >= gameObject.gameBoard.maxSelected)
-		{
+		{// if the number of selected tiles is greater than or equal 2...
+		// do nothing
 			return null;
 		}
 		else
@@ -171,16 +174,18 @@ $(document).ready(function()
 			$(this).addClass("selected");
 			gameObject.gameBoard.numSelected = gameObject.gameBoard.numSelected + 1;	
 		}	
-		console.log(event.target);
+		
+		gameObject.gameBoard.compareTiles(event);
+//		console.log(event.target);
 	});
 	
 	$("p").on("click", function(event)
 	{
-	gameObject.resetGame();
+		gameObject.resetGame();
 	});	
 	
 //	console.log(gameObject.gameBoard.tiles[0]);
-	gameObject.gameBoard.makeNewBoard();
 //	console.log(gameObject.gameBoard.tiles);
-
+	gameObject.resetGame();
+	
 });
