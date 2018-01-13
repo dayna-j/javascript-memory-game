@@ -29,12 +29,14 @@ body{
 }
 
 .selected{
-	background-color: red;
+	background-color: azure;
+}
+
+.solved{
+	background-color: azure;
 }
 
 .board-square:hover{
-/*
-  background-color: aliceblue;
-  background-color: azure;
-*/
+/*  background-color: aliceblue;*/
+/*  background-color: azure;*/
 }

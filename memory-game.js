@@ -4,23 +4,31 @@ $(document).ready(function()
 	{
 		// Properties of the game object
 		
-		_isGameOver: false,
-		_numTurns: 0,
+		isGameOver: false,
+		numTurns: 0,
+		numSolved: 0,
 		
 		// Methods of the game object
 
 		resetGame: function()
-		{// reset valueSet & generate new game board
+		{// reset game to initial conditions
 			gameObject.gameBoard.valueSet = [1,1,2,2,3,3,4,4,5,5,6,6,
 					   7,7,8,8,9,9,10,10,11,11,12,12],
 			gameObject.gameBoard.makeNewBoard();
 			gameObject.gameBoard.numSelected = 0;
+			gameObject.gameBoard.numSolved = 0;
+			gameObject.gameBoard.firstSelected = '';
+			gameObject.gameBoard.secondSelected = '';
 			
 			$(".board-square").each(function()
 			{
 				if ($(this).hasClass("selected"))
-				{// if its there already, remove it
+				{// remove special classes from tiles; .selected , .solved
 					$(this).removeClass("selected");
+				}
+				else if ($(this).hasClass("solved"))
+				{
+					$(this).removeClass("solved");
 				}
 			})
 			
@@ -34,6 +42,9 @@ $(document).ready(function()
 			tiles: $(".board-square"),// tiles contains what is returned by the jquery selector .board-square
 			maxSelected: 2,
 			numSelected: 0,
+			numSolved: 0,
+			firstSelected: '',
+			secondSelected: '',
 			valueSet: [1,1,2,2,3,3,4,4,5,5,6,6,
 					   7,7,8,8,9,9,10,10,11,11,12,12],
 			
@@ -59,7 +70,7 @@ $(document).ready(function()
   				return array;
 			},
 			
-			assignValues: function()// !!!!! WORKING HERE !!!!!
+			assignValues: function()
 			{
 				
 				// use jquery each method to access each game tile and assign a value
@@ -82,19 +93,69 @@ $(document).ready(function()
 			//	2) assign randomized values to game tiles
 			},
 			
-			compareTiles: function()
-			{
-				return null;
-			}
+			compareTiles: function(event) // !!!!! WORKING HERE !!!!!
+			{// if innerHTML of both selected tiles are equal, then give the tiles
+			// a new class; " .solved "
+				
+//				var selectedTiles = $(".selected");
+				
+				if(gameObject.gameBoard.firstSelected === '')
+				{
+					gameObject.gameBoard.firstSelected = event.target.innerHTML;
+				}
+				else
+				{
+					gameObject.gameBoard.secondSelected = event.target.innerHTML;
+				}
+				// if the tiles match ...
+				if (gameObject.gameBoard.firstSelected == gameObject.gameBoard.secondSelected)
+				{// everything with a .selected class will have its .selected class removed and
+				// it will be replaced with a .solved class
+					
+					console.log("match");
+					
+//					var selectedTiles = $(".selected");
+					$(".selected").each(function()
+					{
+						$(this).removeClass(".selected");
+						$(this).addClass("solved");
+						gameObject.gameBoard.numSelected = 0;
+						gameObject.gameBoard.numSolved = gameObject.gameBoard.numSolved + 2;
+						gameObject.gameBoard.firstSelected = '';
+						gameObject.gameBoard.secondSelected = '';
+					})
+					
+					
+							
+				}
+				
+				
+				console.log(gameObject.gameBoard.firstSelected +" "+gameObject.gameBoard.secondSelected);
+
+				
+				
+				
+				//				console.log(selectedTiles);
+				
+				
+				//				if(selectedTiles[0].innerHTML === selectedTiles[1].innerHTML)
+//				{
+//					alert	('t');
+//				}
+				
+			}	
 		}
 	};
 
 	$(".board-square").on("click", function(event)
 	{
-//		if(gameObject.gameBoard.numSelected >= gameObject.gameBoard.maxSelected)
-//		{// do nothing
-//			return null;	
-//		}
+		
+		if($(this).hasClass('solved'))
+		{
+			return null;
+		}
+		
+		gameObject.gameBoard.compareTiles(event);
 		
 		if ($(this).hasClass("selected"))
 		{// if its there already, remove it
@@ -108,7 +169,7 @@ $(document).ready(function()
 		else
 		{
 			$(this).addClass("selected");
-			gameObject.gameBoard.numSelected = gameObject.gameBoard.numSelected + 1
+			gameObject.gameBoard.numSelected = gameObject.gameBoard.numSelected + 1;	
 		}	
 		console.log(event.target);
 	});
