@@ -21,23 +21,20 @@ body{
 }
 
 .board-square{
-  border:1px solid aliceblue;
-  background-color: darkslategrey;
-  transition: background-color .6s ease-out;
+	text-align: center;
+	color: darkslategrey;
+	border:1px solid aliceblue;
+	background-color: darkslategrey;
+/*	transition: background-color .5s ease-out;*/
+}
+
+.selected{
+	background-color: red;
 }
 
 .board-square:hover{
+/*
   background-color: aliceblue;
   background-color: azure;
+*/
 }
-
-/* .no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-
-  > .col,
-  > [class*="col-"] {
-    padding-right: 0;
-    padding-left: 0;
-  }
-} */
