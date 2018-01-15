@@ -20,6 +20,8 @@ $(document).ready(function()
 			gameObject.gameBoard.numSolved = 0;
 			gameObject.gameBoard.firstSelected = '';
 			gameObject.gameBoard.secondSelected = '';
+			gameObject.gameBoard.firstEventObj = {};
+			gameObject.gameBoard.secondEventObj = {};
 			$(".display").val(0);
 			
 			$(".board-square").each(function()
@@ -41,7 +43,7 @@ $(document).ready(function()
 		gameOver: function()
 		{
 			gameObject.isGameOver = true;
-			$("#win").toggle();
+			$("#win").toggle(1100);
 ;
 		},
 		
@@ -158,9 +160,17 @@ $(document).ready(function()
 				
 				
 				console.log(gameObject.gameBoard.firstSelected +" "+gameObject.gameBoard.secondSelected);
-			}	
-		}
-	};
+			},
+			
+			developerMode: function()
+			{// turns off the noselect class for easy solving
+				$(".board-square").each(function()
+				{
+					$(this).removeClass("noselect");
+				});
+			}
+		}//end of gameBoard
+	};//end of gameObject
 
 	$(".board-square").on("click", function(event)
 	{
@@ -210,5 +220,9 @@ $(document).ready(function()
 //	console.log(gameObject.gameBoard.tiles[0]);
 //	console.log(gameObject.gameBoard.tiles);
 	gameObject.resetGame();
-	console.log($(".board-square"));
+	
+	gameObject.gameBoard.developerMode();
+	
+	
+//	console.log($(".board-square"));
 });
