@@ -221,7 +221,7 @@ $(document).ready(function()
 //	console.log(gameObject.gameBoard.tiles);
 	gameObject.resetGame();
 	
-	gameObject.gameBoard.developerMode();
+//	gameObject.gameBoard.developerMode();
 	
 	
 //	console.log($(".board-square"));
