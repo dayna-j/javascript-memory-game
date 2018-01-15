@@ -1,5 +1,7 @@
 $(document).ready(function()
 {
+	$("#win").hide()
+
 	var gameObject = 
 	{
 		// Properties of the game object
@@ -14,7 +16,6 @@ $(document).ready(function()
 		{// reset game to initial conditions
 			gameObject.gameBoard.valueSet = [1,1,2,2,3,3,4,4,5,5,6,6,
 					   7,7,8,8,9,9,10,10,11,11,12,12],
-			gameObject.gameBoard.makeNewBoard();
 			gameObject.gameBoard.numSelected = 0;
 			gameObject.gameBoard.numSolved = 0;
 			gameObject.gameBoard.firstSelected = '';
@@ -24,7 +25,7 @@ $(document).ready(function()
 			$(".board-square").each(function()
 			{
 				if ($(this).hasClass("selected"))
-				{// remove special classes from tiles; .selected , .solved
+				{// remove special classeses from tiles ; .selected ,  .solved
 					$(this).removeClass("selected");
 				}
 				else if ($(this).hasClass("solved"))
@@ -32,9 +33,16 @@ $(document).ready(function()
 					$(this).removeClass("solved");
 				}
 			})
+			$("#win").hide();
+			gameObject.gameBoard.makeNewBoard();
 			
-			$("innerHTML").hide();
-			
+		},
+		
+		gameOver: function()
+		{
+			gameObject.isGameOver = true;
+			$("#win").toggle();
+;
 		},
 		
 		gameBoard: // game board object
@@ -96,7 +104,6 @@ $(document).ready(function()
 //				console.log(gameObject.gameBoard.randomizedSet);
 				gameObject.gameBoard.randomizedSet = gameObject.gameBoard.randomizeValueSet(gameObject.gameBoard.valueSet);
 				gameObject.gameBoard.assignValues();
-			//	2) assign randomized values to game tiles
 			},
 			
 			compareTiles: function(event) // !!!!! WORKING HERE !!!!!
@@ -138,6 +145,17 @@ $(document).ready(function()
 					gameObject.gameBoard.secondSelected = '';
 				}
 				
+				if (gameObject.gameBoard.numSelected === 2)
+				{
+					gameObject.numTurns = gameObject.numTurns + 1;
+					$("#turnsDisplay").val(gameObject.numTurns);
+				}
+				
+				if(gameObject.gameBoard.numSolved == 12)
+				{
+					gameObject.gameOver();
+				}
+				
 				
 				console.log(gameObject.gameBoard.firstSelected +" "+gameObject.gameBoard.secondSelected);
 			}	
@@ -146,7 +164,6 @@ $(document).ready(function()
 
 	$(".board-square").on("click", function(event)
 	{
-
 		if($(this).hasClass('solved'))
 		{// is the tile has been solved, do nothing...
 			return null;
@@ -165,7 +182,6 @@ $(document).ready(function()
 			{
 				gameObject.gameBoard.secondSelected = '';
 			}
-			
 			return null;
 		}
 		else if(gameObject.gameBoard.numSelected >= gameObject.gameBoard.maxSelected)
@@ -187,15 +203,12 @@ $(document).ready(function()
 //		console.log(event.target);
 	});
 	
-	$("p").on("click", function(event)
+	$("#win").on("click", function(event)
 	{
 		gameObject.resetGame();
 	});	
-	
 //	console.log(gameObject.gameBoard.tiles[0]);
 //	console.log(gameObject.gameBoard.tiles);
 	gameObject.resetGame();
-	
-
-	
+	console.log($(".board-square"));
 });

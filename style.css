@@ -1,49 +1,111 @@
+*{
+	box-sizing: border-box;
+}
+
 body{
 /*   display: flex; */
 /*   align-items: center; */
-
 /*  background-color: azure;*/
- background: linear-gradient(to bottom right, beige, #95A0AA);
+
+	
+/*	background: linear-gradient(to bottom right, beige, #95A0AA);*/
 /*	background-color: #95A0AA;*/
+	
+	
+	background: linear-gradient(331deg, #d2691e, #efb78f);
+	background-size: 400% 400%;
+
+	-webkit-animation: AnimationName 10s ease infinite;
+	-moz-animation: AnimationName 10s ease infinite;
+	animation: AnimationName 10s ease infinite;
+
+	@-webkit-keyframes AnimationName {
+		0%{background-position:0% 9%}
+    	50%{background-position:100% 92%}
+    	100%{background-position:0% 9%}
+}
+	@-moz-keyframes AnimationName {
+		0%{background-position:0% 9%}
+    	50%{background-position:100% 92%}
+    	100%{background-position:0% 9%}
+}
+	@keyframes AnimationName { 
+		0%{background-position:0% 9%}
+    	50%{background-position:100% 92%}
+    	100%{background-position:0% 9%}
 }
 
-#header{
-	background-color: #708090;
-	flex-wrap:nowrap;
+}
+
+#outermostContainer{
+/*	flex-direction: column;*/
+/*	height: auto;*/
+
+	position: relative;
+	top: 15px;
+}
+
+#header{/*header is a flex-container for the header*/
+/*	background-color: #708090;*/
+/*	flex-wrap:nowrap;*/
+}
+
+#turns-col{
+	background-color: cornsilk;
+}
+
+#matched-col{
+	background-color: burlywood;
 }
 
 input[type=text]{
+	margin: 10px;
+	font-size: 15pt;
 	font-family: monospace;
 	background-color: darkseagreen;
-	height: 1.1em;
-	text-align: right;
+	height: 1.5em;
+	text-align: center;
 }
 
-.container{
-  position: relative;
-  top: 100px;
-  width: 50%;
-  height: 50%;
+#win{
+	font-family:fantasy;
+	background-color: none;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#board-container{
+/*  position: relative;*/
+/*  top: 100px;*/
+/*  width: 50%;*/
+/*  height: 50%;*/
   
 }
 
 .row{
-/*   width: 50%; */
-  height: 60px;
+
+	/*	width: 50%; */
+	height: 13%;
 /*   border: 1px solid black; */
 }
 
 .header-row{
-	height: 1.5em;
-	border: 1px solid slategray; 
+	height: 3em;
+	border: 2px solid slategray; 
 }
 
 .board-square{
+	font-size: 3em;	
+/*	font-size: 20pt;*/
 	text-align: center;
+	
 	color: #CACFD4;
-	border:1px solid #A2A1B6;
+	color: #d2691e;
+	border:1px solid cornsilk;
 	background-color: #CACFD4;
-/*	transition: background-color .5s ease-out;*/
+	background-color: #d2691e;
+	
+	transition: background-color .5s ease-out;
 }
 
 .selected{
@@ -58,4 +120,5 @@ input[type=text]{
 /*  background-color: aliceblue;*/
 /*  background-color: azure;*/
 	border: 1px solid #51667A;
+	
 }

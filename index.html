@@ -2,7 +2,7 @@
 
 <head>
 	<title>Memory Game</title>
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 		
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
@@ -18,69 +18,74 @@
 
 <body>
 
-<div class ="flex-container" id="header">
-	<div class = "row header-row">
-		<div class = "col"><span>Turns: </span>
-			<input type="text" class = "display" id="turnsDisplay" readonly>
-		</div>
-		<div class = "col"><span>Matched: </span>
-			<input type="text" class = "display" id="matchedDisplay" readonly>
+<!--outermost div-->
+<div class = "container" id = "outermostContainer">
+
+<!--	flex-container for the header-->
+	<div class ="flex-container" id="header">
+		<div class = "row header-row">
+			<div class = "col" id = "turns-col"><span>Turns: </span>
+				<input type="text" class = "display" id="turnsDisplay" readonly>
+			</div>
+			<div class = "col" id = "matched-col"><span>Matched: </span>
+				<input type="text" class = "display" id="matchedDisplay" readonly>
+			</div>
 		</div>
 	</div>
-</div>
 	
-<div class = "container">
+	
+	<div id = "board-container" class = "flex-container">
    
-<!--
-	<div class ="row">
-		<div id = "col"><p>Click for new game </p> </div>
+		<div class ="row">
+			<div id = "win" class = "col">You win! Click for a new game..</div>
+		</div>
+	
+  	<div id="row1" class = "row">
+		<div id = "x1y1" class = "col board-square x1 y1"><div></div></div>
+    	<div id = "x2y1" class = "col board-square x2 y1"></div>
+    	<div id = "x3y1" class = "col board-square x3 y1"></div>
+    	<div id = "x4y1" class = "col board-square x4 y1"></div>
+  	</div>
+  
+  	<div id="row2" class = "row">
+		<div id ="x1y2" class = "col board-square x1 y2"></div>
+    	<div id = "x2y2" class = "col board-square x2 y2"></div>
+    	<div id = "x3y2" class = "col board-square x3 y2"></div>
+    	<div id = "x4y2" class = "col board-square x4 y2"></div>
+  	</div>
+  
+  	<div id="row3" class = "row">
+		<div id ="x1y3" class = "col board-square x1 y3"></div>
+    	<div id = "x2y3" class = "col board-square x2 y3"></div>
+		<div id = "x3y3" class = "col board-square x3 y3"></div>
+    	<div id = "x4y3" class = "col board-square x4 y3"></div>
+		</div>
+		
+  	<div id="row4" class = "row">
+		<div id ="x1y4" class = "col board-square x1 y4"></div>
+    	<div id = "x2y4" class = "col board-square x2 y4"></div>
+    	<div id = "x3y4" class = "col board-square x3 y4"></div>
+    	<div id = "x4y4" class = "col board-square x4 y4"></div>
+  	</div>
+  
+	<div id="row5" class = "row">
+    	<div id ="x1y5" class = "col board-square x1 y5"></div>
+    	<div id = "x2y5" class = "col board-square x2 y5"></div>
+    	<div id = "x3y5" class = "col board-square x3 y5"></div>
+    	<div id = "x4y5" class = "col board-square x4 y5"></div>
 	</div>
--->
-	
-  <div id="row1" class = "row">
-    <div id = "x1y1" class = "col board-square x1 y1"></div>
-    <div id = "x2y1" class = "col board-square x2 y1"></div>
-    <div id = "x3y1" class = "col board-square x3 y1"></div>
-    <div id = "x4y1" class = "col board-square x4 y1"></div>
-  </div>
   
-  <div id="row2" class = "row">
-    <div id ="x1y2" class = "col board-square x1 y2"></div>
-    <div id = "x2y2" class = "col board-square x2 y2"></div>
-    <div id = "x3y2" class = "col board-square x3 y2"></div>
-    <div id = "x4y2" class = "col board-square x4 y2"></div>
-  </div>
+  	<div id="row6" class = "row">
+		<div id ="x1y6" class = "col board-square x1 y6"></div>
+    	<div id = "x2y6" class = "col board-square x2 y6"></div>
+    	<div id = "x3y6" class = "col board-square x3 y6"></div>
+    	<div id = "x4y6" class = "col board-square x4 y6"></div>
+  	</div>
   
-  <div id="row3" class = "row">
-    <div id ="x1y3" class = "col board-square x1 y3"></div>
-    <div id = "x2y3" class = "col board-square x2 y3"></div>
-    <div id = "x3y3" class = "col board-square x3 y3"></div>
-    <div id = "x4y3" class = "col board-square x4 y3"></div>
-  </div>
-  
-  <div id="row4" class = "row">
-    <div id ="x1y4" class = "col board-square x1 y4"></div>
-    <div id = "x2y4" class = "col board-square x2 y4"></div>
-    <div id = "x3y4" class = "col board-square x3 y4"></div>
-    <div id = "x4y4" class = "col board-square x4 y4"></div>
-  </div>
-  
-  <div id="row5" class = "row">
-    <div id ="x1y5" class = "col board-square x1 y5"></div>
-    <div id = "x2y5" class = "col board-square x2 y5"></div>
-    <div id = "x3y5" class = "col board-square x3 y5"></div>
-    <div id = "x4y5" class = "col board-square x4 y5"></div>
-  </div>
-  
-  <div id="row6" class = "row">
-    <div id ="x1y6" class = "col board-square x1 y6"></div>
-    <div id = "x2y6" class = "col board-square x2 y6"></div>
-    <div id = "x3y6" class = "col board-square x3 y6"></div>
-    <div id = "x4y6" class = "col board-square x4 y6"></div>
-  </div>
-  
+	</div>
+
 </div>
-	
+
 </body>
 	
 </html>
